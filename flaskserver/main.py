@@ -64,7 +64,7 @@ def inference():
         df_main = pd.DataFrame(inference_dict, index=[0])
 
         #scaling the values
-        df_main = sc.transform(df_main)
+        # df_main = sc.transform(df_main)
 
         #converting to DMatrix format
         df_main = xgb.DMatrix(df_main)

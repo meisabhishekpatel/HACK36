@@ -6,7 +6,6 @@ const WeatherCard = ({ apiKey, latitude, longitude }) => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        // const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}`;
         const apiUrl = `http://api.weatherapi.com/v1/current.json?key=52cd588ad7ed4eddb4c71127242004&q=25.50375,81.87012&aqi=no`;
         const response = await fetch(apiUrl);
         if (!response.ok) {
@@ -24,9 +23,9 @@ const WeatherCard = ({ apiKey, latitude, longitude }) => {
   }, [apiKey, latitude, longitude]);
 
   return (
-    <div className="p-4 weather-card bg-blue-100 rounded-2xl fixed">
+    <div className="mb-4 p-4 w-[100vh]  bg-blue-100 rounded-2xl  flex justify-center items-center">
       {weatherData ? (
-        <div>
+        <div className="text-center">
           <h2>
             {weatherData.location.name}, {weatherData.location.region},{" "}
             {weatherData.location.country}

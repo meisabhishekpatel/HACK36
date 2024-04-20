@@ -1,14 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { useState } from "react";
 import axios from "axios";
 import coordinates from "../assets/coordinate";
 
-const MapComponent = () => {
-  const mapRef = useRef(null);
-  const legendMarkerRef = useRef(null);
-
+const ResponseCard = ({ apiKey, latitude, longitude }) => {
+  const [weatherData, setWeatherData] = useState(null);
   // const coordinates = [
   //   { lat: 25.50375, lng: 81.87012 },
   //   { lat: 25.49217, lng: 81.86762 },
@@ -76,64 +73,28 @@ const MapComponent = () => {
   //   { lat: 25.50365, lng: 81.87011 },
   //   { lat: 25.50375, lng: 81.87012 },
   // ];
-  const carIcon = L.divIcon({
-    className:
-      "items-center justify-center w-2 h-2 text-white bg-blue-500 rounded-full shadow-lg",
-    html: '<i class="fas fa-car"></i>',
-    iconSize: [30, 30],
-  });
+  // coordinates
 
   useEffect(() => {
-    if (!mapRef.current) {
-      // Initialize Leaflet map
-      mapRef.current = L.map("map").setView([25.492062, 81.867989], 13);
-
-      // Add tile layer (you may need to replace the URL with your own)
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "&copy; OpenStreetMap contributors",
-      }).addTo(mapRef.current);
-
-      // Define Legend marker
-      legendMarkerRef.current = L.marker([0, 0], {
-        icon: carIcon,
-      }).addTo(mapRef.current);
-
-      // Animate Legend marker
-      animateLegendMarker(coordinates);
-    }
+    // Animate Legend marker
+    animateLegendMarker(coordinates);
   }, []);
 
-  const [userLocation, setUserLocation] = useState(null);
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(
-        (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        (error) => {
-          console.error(error);
-        }
+  const myFunction = async (obj) => {
+    try {
+      const res = await axios.post(
+        "http://127.0.0.1:5000/model_inference",
+        obj
       );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
+      console.log(res.data);
+      setResponse(res.data);
+    } catch (e) {
+      console.log(e);
     }
-  });
+    // You can put your code here
+  };
 
-  // const myFunction = async (obj) => {
-  //   try {
-  //     const res = await axios.post(
-  //       "http://127.0.0.1:5000/model_inference",
-  //       obj
-  //     );
-  //     console.log(res.data);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  //   // You can put your code here
-  // };
+  const [location, setLocation] = useState({ lat: 0, long: 0 });
 
   function animateLegendMarker(coordinates) {
     let index = 0;
@@ -147,18 +108,60 @@ const MapComponent = () => {
         minutes: now.getMinutes(),
         day_of_week: now.getDay(),
       };
-      // console.log(obj);
-      // myFunction(obj);
-      legendMarkerRef.current.setLatLng([lat, lng]);
-      mapRef.current.panTo([lat, lng]);
+      setLocation({ lat: lat, long: lng });
+      console.log(obj);
+      myFunction(obj);
       index++;
       if (index >= coordinates.length) {
         clearInterval(interval);
       }
-    }, 1000); // Change animation speed as needed
+    }, 10000);
   }
 
-  return <div id="map" style={{ height: "800px" }}></div>;
+  const [Response, setResponse] = useState(null);
+
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        const apiUrl = `http://api.weatherapi.com/v1/current.json?key=52cd588ad7ed4eddb4c71127242004&q=25.50375,81.87012&aqi=no`;
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error("Weather data not found");
+        }
+        const data = await response.json();
+        setWeatherData(data);
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+        setWeatherData(null);
+      }
+    };
+
+    fetchWeatherData();
+  }, [apiKey, latitude, longitude]);
+
+  return (
+    <div className="p-4 w-[100vh] weather-card bg-blue-100 rounded-2xl flex justify-center items-center">
+      {Response ? (
+        <div className="text-center">
+          <h2>
+            Severity
+            {(Response.float_value / 3) * 100}, {location.lat},{" "}
+            {weatherData.location.country}
+          </h2>
+          <p>{weatherData.current.condition.text}</p>
+          <img
+            src={`https:${weatherData.current.condition.icon}`}
+            alt={weatherData.current.condition.text}
+          />
+          <p>Temperature: {weatherData.current.temp_c}°C</p>
+          <p>Humidity: {weatherData.current.humidity}%</p>
+          <p>Wind Speed: {weatherData.current.wind_kph} km/h</p>
+        </div>
+      ) : (
+        <p>Loading weather data...</p>
+      )}
+    </div>
+  );
 };
 
-export default MapComponent;
+export default ResponseCard;
