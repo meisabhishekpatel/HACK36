@@ -3,8 +3,10 @@ import pandas as pd
 import xgboost as xgb
 import joblib
 from datetime import datetime
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app,origins=['http://localhost:5173','http://localhost:5173'])
 
 model = xgb.Booster()
 model.load_model('model.bst')

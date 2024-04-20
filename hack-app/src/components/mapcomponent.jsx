@@ -1,6 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import React, { useEffect, useRef } from "react";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { useState } from "react";
+import axios from "axios";
 
 const MapComponent = () => {
   const mapRef = useRef(null);
@@ -71,30 +73,76 @@ const MapComponent = () => {
     { lat: 25.50347, lng: 81.87008 },
     { lat: 25.50353, lng: 81.8701 },
     { lat: 25.50365, lng: 81.87011 },
-    { lat: 25.50375, lng: 81.87012 }
+    { lat: 25.50375, lng: 81.87012 },
   ];
-  
-  
 
   useEffect(() => {
     if (!mapRef.current) {
       // Initialize Leaflet map
-      mapRef.current = L.map('map').setView([25.492062, 81.867989], 13);
+      mapRef.current = L.map("map").setView([25.492062, 81.867989], 13);
 
       // Add tile layer (you may need to replace the URL with your own)
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
       }).addTo(mapRef.current);
 
       // Define Legend marker
       legendMarkerRef.current = L.marker([0, 0], {
-        icon: L.divIcon({ className: 'legend-marker', html: 'Legend' })
+        icon: L.divIcon({ className: "legend-marker", html: "Legend" }),
       }).addTo(mapRef.current);
 
       // Animate Legend marker
       animateLegendMarker(coordinates);
     }
   }, []);
+
+  const [userLocation, setUserLocation] = useState(null);
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(
+        (position) => {
+          setUserLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }, []);
+
+  const myFunction = async () => {
+    let now = new Date();
+    const obj = {
+      lat: userLocation.lat,
+      long: userLocation.lng,
+      hour: now.getHours(),
+      minutes: now.getMinutes(),
+      day_of_week: now.getDay(),
+    };
+    // console.log(obj);
+    const res = await axios.post("http://127.0.0.1:5000/model_inference", obj);
+    console.log(res.data);
+    // You can put your code here
+  };
+  useEffect(() => {
+    // Define your function to be called every 5 seconds
+
+    // Call myFunction initially when the component mounts
+    myFunction();
+
+    // Call myFunction every 5 seconds using setInterval
+    const intervalId = setInterval(myFunction, 50000);
+
+    // Clear the interval when the component unmounts
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [userLocation]);
 
   // Animate Legend marker with coordinates
   function animateLegendMarker(coordinates) {
@@ -103,6 +151,8 @@ const MapComponent = () => {
       const { lat, lng } = coordinates[index];
       legendMarkerRef.current.setLatLng([lat, lng]);
       mapRef.current.panTo([lat, lng]);
+      setUserLocation({ lat: lat, lng: lng });
+      // console.log(userLocation);
       index++;
       if (index >= coordinates.length) {
         clearInterval(interval);
@@ -110,9 +160,7 @@ const MapComponent = () => {
     }, 1000); // Change animation speed as needed
   }
 
-  return (
-    <div id="map" style={{ height: '800px' }}></div>
-  );
+  return <div id="map" style={{ height: "800px" }}></div>;
 };
 
 export default MapComponent;
