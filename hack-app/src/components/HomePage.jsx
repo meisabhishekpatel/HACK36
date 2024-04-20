@@ -13,7 +13,7 @@ function HomePage() {
               world use Flowbite to simplify their payment stack.
             </p> */}
           <a
-            href="#"
+            href='http://127.0.0.1:5001/'
             class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
           >
             Start Test Now
