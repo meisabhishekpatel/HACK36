@@ -10,6 +10,7 @@ CORS(app,origins=['http://localhost:5173','http://localhost:5173'])
 
 model = xgb.Booster()
 model.load_model('model.bst')
+sc = joblib.load('scaler1.pkl')
 # inference_dict = {
 #     'longitude': 78.534042,
 #     'latitude': 14.724026,
@@ -56,12 +57,18 @@ def inference():
             'longitude': lat,
             'latitude': long,
             'Hour': hour,
-            'Seconds': minutes,
+            'Second': minutes,
             'Day_of_Week': day_of_week
         }
 
         df_main = pd.DataFrame(inference_dict, index=[0])
+
+        #scaling the values
+        df_main = sc.transform(df_main)
+
+        #converting to DMatrix format
         df_main = xgb.DMatrix(df_main)
+
         float_value = float(model.predict(df_main)[0])
         # Return the float value as JSON
         return jsonify(float_value=float_value)
