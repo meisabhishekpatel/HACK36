@@ -76,6 +76,13 @@ const MapComponent = () => {
     { lat: 25.50375, lng: 81.87012 },
   ];
 
+  const carIcon = L.divIcon({
+    className: "leaflet",
+    html: '<i class="fas fa-car"></i>',
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
+  });
+
   useEffect(() => {
     if (!mapRef.current) {
       // Initialize Leaflet map
@@ -88,7 +95,7 @@ const MapComponent = () => {
 
       // Define Legend marker
       legendMarkerRef.current = L.marker([0, 0], {
-        icon: L.divIcon({ className: "legend-marker", html: "Legend" }),
+        icon: carIcon,
       }).addTo(mapRef.current);
 
       // Animate Legend marker
@@ -113,51 +120,42 @@ const MapComponent = () => {
     } else {
       console.error("Geolocation is not supported by this browser.");
     }
-  }, []);
+  });
 
-  const myFunction = async () => {
-    let now = new Date();
-    const obj = {
-      lat: userLocation.lat,
-      long: userLocation.lng,
-      hour: now.getHours(),
-      minutes: now.getMinutes(),
-      day_of_week: now.getDay(),
-    };
-    // console.log(obj);
-    const res = await axios.post("http://127.0.0.1:5000/model_inference", obj);
-    console.log(res.data);
+  const myFunction = async (obj) => {
+    try {
+      const res = await axios.post(
+        "http://127.0.0.1:5000/model_inference",
+        obj
+      );
+      console.log(res.data);
+    } catch (e) {
+      console.log(e);
+    }
     // You can put your code here
   };
-  useEffect(() => {
-    // Define your function to be called every 5 seconds
 
-    // Call myFunction initially when the component mounts
-    myFunction();
-
-    // Call myFunction every 5 seconds using setInterval
-    const intervalId = setInterval(myFunction, 50000);
-
-    // Clear the interval when the component unmounts
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [userLocation]);
-
-  // Animate Legend marker with coordinates
   function animateLegendMarker(coordinates) {
     let index = 0;
     const interval = setInterval(() => {
       const { lat, lng } = coordinates[index];
+      let now = new Date();
+      const obj = {
+        lat: lat,
+        long: lng,
+        hour: now.getHours(),
+        minutes: now.getMinutes(),
+        day_of_week: now.getDay(),
+      };
+      console.log(obj);
+      myFunction(obj);
       legendMarkerRef.current.setLatLng([lat, lng]);
       mapRef.current.panTo([lat, lng]);
-      setUserLocation({ lat: lat, lng: lng });
-      // console.log(userLocation);
       index++;
       if (index >= coordinates.length) {
         clearInterval(interval);
       }
-    }, 1000); // Change animation speed as needed
+    }, 5000); // Change animation speed as needed
   }
 
   return <div id="map" style={{ height: "800px" }}></div>;

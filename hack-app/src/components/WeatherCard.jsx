@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const WeatherCard = ({ apiKey, latitude, longitude }) => {
   const [weatherData, setWeatherData] = useState(null);
@@ -10,12 +10,12 @@ const WeatherCard = ({ apiKey, latitude, longitude }) => {
         const apiUrl = `http://api.weatherapi.com/v1/current.json?key=52cd588ad7ed4eddb4c71127242004&q=25.50375,81.87012&aqi=no`;
         const response = await fetch(apiUrl);
         if (!response.ok) {
-          throw new Error('Weather data not found');
+          throw new Error("Weather data not found");
         }
         const data = await response.json();
         setWeatherData(data);
       } catch (error) {
-        console.error('Error fetching weather data:', error);
+        console.error("Error fetching weather data:", error);
         setWeatherData(null);
       }
     };
@@ -24,12 +24,18 @@ const WeatherCard = ({ apiKey, latitude, longitude }) => {
   }, [apiKey, latitude, longitude]);
 
   return (
-    <div className="weather-card">
+    <div className="p-4 weather-card bg-blue-100 rounded-2xl fixed">
       {weatherData ? (
         <div>
-          <h2>{weatherData.location.name}, {weatherData.location.region}, {weatherData.location.country}</h2>
+          <h2>
+            {weatherData.location.name}, {weatherData.location.region},{" "}
+            {weatherData.location.country}
+          </h2>
           <p>{weatherData.current.condition.text}</p>
-          <img src={`https:${weatherData.current.condition.icon}`} alt={weatherData.current.condition.text} />
+          <img
+            src={`https:${weatherData.current.condition.icon}`}
+            alt={weatherData.current.condition.text}
+          />
           <p>Temperature: {weatherData.current.temp_c}°C</p>
           <p>Humidity: {weatherData.current.humidity}%</p>
           <p>Wind Speed: {weatherData.current.wind_kph} km/h</p>
