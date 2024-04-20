@@ -2,6 +2,7 @@ import React from "react";
 import MapComponent from "./mapcomponent";
 import WeatherCard from "./WeatherCard";
 import ResponseCard from "./ResponesCard";
+import EmergencyButton from "./btn";
 
 function MapLanding() {
   return (
@@ -24,6 +25,7 @@ function MapLanding() {
           {/* Set position to absolute */}
           <WeatherCard />
           <ResponseCard />
+          <EmergencyButton/>
         </div>
       </div>
     </div>
