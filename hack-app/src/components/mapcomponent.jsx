@@ -77,10 +77,10 @@ const MapComponent = () => {
   ];
 
   const carIcon = L.divIcon({
-    className: "leaflet",
+    className:
+      "items-center justify-center w-2 h-2 text-white bg-blue-500 rounded-full shadow-lg",
     html: '<i class="fas fa-car"></i>',
     iconSize: [30, 30],
-    iconAnchor: [15, 30],
   });
 
   useEffect(() => {
@@ -155,7 +155,7 @@ const MapComponent = () => {
       if (index >= coordinates.length) {
         clearInterval(interval);
       }
-    }, 5000); // Change animation speed as needed
+    }, 1000); // Change animation speed as needed
   }
 
   return <div id="map" style={{ height: "800px" }}></div>;

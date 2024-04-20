@@ -1,6 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
+  const navigate = useNavigate();
   return (
     <div>
       <header>
@@ -17,18 +20,15 @@ function LandingPage() {
               </span>
             </a>
             <div class="flex items-center lg:order-2">
-              <a
-                href="#"
-                class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-              >
-                Log in
-              </a>
-              <a
-                href="#"
+              <button
+                onClick={() => {
+                  navigate("/login");
+                }}
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               >
-                Sign Up
-              </a>
+                Log in
+              </button>
+
               <button
                 data-collapse-toggle="mobile-menu-2"
                 type="button"
@@ -133,11 +133,11 @@ function LandingPage() {
               From checkout to global sales tax compliance, companies around the
               world use Flowbite to simplify their payment stack.
             </p> */}
-            <a
-              href="#"
+            <Link
+              to="/login"
               class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
             >
-              Sign Up with Google
+              Login with Google
               <svg
                 class="w-5 h-5 ml-2 -mr-1"
                 fill="currentColor"
@@ -150,13 +150,7 @@ function LandingPage() {
                   clip-rule="evenodd"
                 ></path>
               </svg>
-            </a>
-            <a
-              href="#"
-              class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-            >
-              Login
-            </a>
+            </Link>
           </div>
           <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
             <img src="https://i.imgur.com/0Tj0hXd.png" alt="mockup" />
