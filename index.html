@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drowsiness Detector</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #heading-wrapper, #image-wrapper {
+            text-align: center;
+        }
+
+        #heading-wrapper {
+            margin-bottom: 20px; /* Add margin to create gap */
+        }
+
+        h1 {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 36px;
+            margin: 0;
+        }
+
+        #image-wrapper {
+            display: flex; /* Flex row layout */
+            flex-direction: row; /* Horizontal alignment */
+            justify-content: center; /* Center items horizontally */
+            align-items: center; /* Center items vertically */
+            gap: 20px; /* Introduce gap between elements */
+        }
+
+        #video_feed {
+            width: 640px;
+            height: 480px;
+        }
+
+        #drowsetest {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        #timer {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="heading-wrapper">
+            <h1>Drowsiness Test Window</h1>
+        </div>
+        <div id="image-wrapper">
+            <img id="video_feed" src="{{ url_for('video_feed') }}" />
+            <div id="drowsetest"> 
+                <p>Please remain on the screen for next 30 seconds in order to pass the test</p>
+                <p id="timer">Time remaining: <span id="countdown">30</span> seconds</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer
+        let timeLeft = 30;
+        const countdownElement = document.getElementById('countdown');
+
+        function updateTimer() {
+            countdownElement.textContent = timeLeft + ' seconds';
+            timeLeft--;
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                countdownElement.textContent = 'Time expired';
+                // Add code to handle timer expiration (e.g., trigger an action)
+            }
+        }
+
+        // Initial update
+        updateTimer();
+
+        // Update the timer every second
+        const timer = setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
