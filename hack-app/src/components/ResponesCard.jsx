@@ -144,21 +144,14 @@ const ResponseCard = ({ apiKey, latitude, longitude }) => {
       {Response ? (
         <div className="text-center">
           <h2>
-            Severity
-            {(Response.float_value / 3) * 100}, {location.lat},{" "}
-            {weatherData.location.country}
+            Severity Percent{" "}
+            {(((Response.float_value - 1) / 3) * 100).toFixed(2)}
           </h2>
-          <p>{weatherData.current.condition.text}</p>
-          <img
-            src={`https:${weatherData.current.condition.icon}`}
-            alt={weatherData.current.condition.text}
-          />
-          <p>Temperature: {weatherData.current.temp_c}°C</p>
-          <p>Humidity: {weatherData.current.humidity}%</p>
-          <p>Wind Speed: {weatherData.current.wind_kph} km/h</p>
+          <p>Latitude {location.lat}</p>
+          <p>Longitude {location.long}</p>
         </div>
       ) : (
-        <p>Loading weather data...</p>
+        <p>Loading data...</p>
       )}
     </div>
   );
