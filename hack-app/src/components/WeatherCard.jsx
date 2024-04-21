@@ -23,22 +23,23 @@ const WeatherCard = ({ apiKey, latitude, longitude }) => {
   }, [apiKey, latitude, longitude]);
 
   return (
-    <div className="mb-4 p-4 w-[100vh]  bg-blue-100 rounded-2xl  flex justify-center items-center">
+    <div className="mb-8 p-8 w-full max-w-md mx-auto bg-blue-100 rounded-2xl text-center">
       {weatherData ? (
-        <div className="text-center">
-          <h2>
+        <>
+          <h2 className="text-xl font-bold mb-2">
             {weatherData.location.name}, {weatherData.location.region},{" "}
             {weatherData.location.country}
           </h2>
-          <p>{weatherData.current.condition.text}</p>
+          <p className="mb-4">{weatherData.current.condition.text}</p>
           <img
             src={`https:${weatherData.current.condition.icon}`}
             alt={weatherData.current.condition.text}
+            className="w-16 h-16 mb-4 mx-auto"
           />
-          <p>Temperature: {weatherData.current.temp_c}°C</p>
-          <p>Humidity: {weatherData.current.humidity}%</p>
+          <p className="mb-2">Temperature: {weatherData.current.temp_c}°C</p>
+          <p className="mb-2">Humidity: {weatherData.current.humidity}%</p>
           <p>Wind Speed: {weatherData.current.wind_kph} km/h</p>
-        </div>
+        </>
       ) : (
         <p>Loading weather data...</p>
       )}

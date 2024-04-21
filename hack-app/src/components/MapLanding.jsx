@@ -3,6 +3,7 @@ import MapComponent from "./mapcomponent";
 import WeatherCard from "./WeatherCard";
 import ResponseCard from "./ResponesCard";
 import EmergencyButton from "./btn";
+import AccidentWitnessed from "./accident";
 
 function MapLanding() {
   return (
@@ -26,6 +27,7 @@ function MapLanding() {
           <WeatherCard />
           <ResponseCard />
           <EmergencyButton/>
+          <AccidentWitnessed/>
         </div>
       </div>
     </div>
