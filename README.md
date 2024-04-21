@@ -64,14 +64,14 @@ To use SafeRoute, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/saferoute.git
+   git clone https://github.com/meisabhishekpatel/HACK36.git
 2. Install dependencies:
 ```bash
    npm install
 
 3. Start the development server::
 ```bash
-   npm start
+   npm run dev
 
 License
 This project is licensed under the MIT License. See the LICENSE file for details
