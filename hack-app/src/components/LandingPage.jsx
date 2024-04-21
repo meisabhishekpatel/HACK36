@@ -9,7 +9,7 @@ function LandingPage() {
       <header>
         <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
           <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <a href="https://flowbite.com" class="flex items-center">
+            <a href="/" class="flex items-center">
               <img
                 src="https://flowbite.com/docs/images/logo.svg"
                 class="mr-3 h-6 sm:h-9"
@@ -75,30 +75,6 @@ function LandingPage() {
                     aria-current="page"
                   >
                     Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Company
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Marketplace
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Features
                   </a>
                 </li>
                 <li>
@@ -306,58 +282,22 @@ function LandingPage() {
         </div>
       </section>
 
-      <section class="bg-white dark:bg-gray-900">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-          <div class="mx-auto max-w-screen-sm text-center">
-            <h2 class="mb-4 text-4xl font-extrabold leading-tight text-gray-900 dark:text-white">
-              Start your free trial today
-            </h2>
-            <p class="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">
-              Try Flowbite Platform for 30 days. No credit card required.
-            </p>
-            <a
-              href="#"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            >
-              Free trial for 30 days
-            </a>
-          </div>
-        </div>
-      </section>
-
       <footer class="p-4 bg-gray-50 sm:p-6 dark:bg-gray-800">
         <div class="mx-auto max-w-screen-xl">
           <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
-              <a href="https://flowbite.com" class="flex items-center">
+              <a href="/" class="flex items-center">
                 <img
                   src="https://flowbite.com/docs/images/logo.svg"
                   class="mr-3 h-8"
                   alt="FlowBite Logo"
                 />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                  Flowbite
+                  Safe Point
                 </span>
               </a>
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-              <div>
-                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                  Resources
-                </h2>
-                <ul class="text-gray-600 dark:text-gray-400">
-                  <li class="mb-4">
-                    <a href="#" class="hover:underline">
-                      Flowbite
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="hover:underline">
-                      Tailwind CSS
-                    </a>
-                  </li>
-                </ul>
-              </div>
               <div>
                 <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                   Follow us
