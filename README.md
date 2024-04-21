@@ -4,7 +4,8 @@ In an era where road safety remains a critical concern, SafeRoute emerges as a d
 ![image](https://github.com/meisabhishekpatel/HACK36/assets/95674894/fd1c47e2-555d-47c4-a3f4-e2bcdd2963e0)
 
 
-![image](https://github.com/meisabhishekpatel/HACK36/assets/95674894/303ca926-f96e-45f4-99ff-6b5f6fac388d)
+![image](https://github.com/meisabhishekpatel/HACK36/assets/95674894/c82bb852-5171-4e8c-a026-f1f70b77f6ea)
+
 
 
 ## Features
