@@ -1,6 +1,9 @@
 # SafeRoute: Enhancing Road Safety Through Technology
 
 In an era where road safety remains a critical concern, SafeRoute emerges as a dedicated personal assistant designed to enhance safety on the road. Leveraging data provided by the Ministry of Road Transport and Highways, SafeRoute integrates seamlessly with Google Maps to provide real-time insights into the safety status of a given route. Our mission is to bring this application on SmartScreen of every car.
+![image](https://github.com/meisabhishekpatel/HACK36/assets/95674894/fd1c47e2-555d-47c4-a3f4-e2bcdd2963e0)
+
+
 ![image](https://github.com/meisabhishekpatel/HACK36/assets/95674894/303ca926-f96e-45f4-99ff-6b5f6fac388d)
 
 
