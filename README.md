@@ -1,8 +1,20 @@
 <a href="https://hack36.com"> <img src="https://i.postimg.cc/FFwvfkGk/built-at-hack36.png" height=24px> </a>
 
+
+## Resources
+- [PPT](https://www.canva.com/design/DAGC_0ibkMk/HtUxPBI_mNsTH6d64aldxw/view)
+- [Video Demo]()
+
+  ## Team Level_Sabke_Niklenge
+- [Abhishek Patel](https://github.com/meisabhishekpatel)
+- [Alok Kumar Singh](https://github.com/harmonicfunc)
+- [Shreyansh Sinha](https://github.com/aryan1oo)
+- [Utkarsh Sharma](https://github.com/TechTonicShift)
+
 # SafeRoute: Enhancing Road Safety Through Technology
 
 In an era where road safety remains a critical concern, SafeRoute emerges as a dedicated personal assistant designed to enhance safety on the road. Leveraging data provided by the Ministry of Road Transport and Highways, SafeRoute integrates seamlessly with Google Maps to provide real-time insights into the safety status of a given route. Our mission is to bring this application on SmartScreen of every car.
+
 ![image](https://github.com/meisabhishekpatel/HACK36/assets/95674894/fd1c47e2-555d-47c4-a3f4-e2bcdd2963e0)
 
 
