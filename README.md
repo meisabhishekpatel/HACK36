@@ -3,7 +3,7 @@
 
 ## Resources
 - [PPT](https://www.canva.com/design/DAGC_0ibkMk/HtUxPBI_mNsTH6d64aldxw/view)
-- [Video Demo]()
+- [Video Demo](https://youtu.be/kI5gRRa6dAo)
 
   ## Team Level_Sabke_Niklenge
 - [Abhishek Patel](https://github.com/meisabhishekpatel)
